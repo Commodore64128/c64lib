@@ -24,6 +24,8 @@
 .const SPRITE_MASK_2 = $4
 .const SPRITE_MASK_3 = $8
 
+.const SPRITE_SIZE_BYTES = 64
+
 .macro sprite_enable(i) {
     lda #(1 << i)
     ora SPRITE_ENABLE
@@ -57,13 +59,13 @@
 }
 
 .macro sprite_x(i, x) {
-    lda #x
+    lda x
     sta SPRITE_COORD_X_BASE + 2*i
     // TODO: handle extra bit for x >= $100
 }
 
 .macro sprite_y(i, y) {
-    lda #y
+    lda y
     sta SPRITE_COORD_Y_BASE + 2*i
 }
 
