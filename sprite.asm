@@ -53,8 +53,12 @@
     sta SPRITE_COLORS_BASE + i
 }
 
-.macro sprite_data(i, addr) {
-    lda #(addr / 64)
+.macro sprite_addr(i, addr) {
+    sprite_addr_div64(i, addr/64)
+}
+
+.macro sprite_addr_div64(i, idx) {
+    lda #idx
     sta SPRITE_POINTER_BASE + i
 }
 
