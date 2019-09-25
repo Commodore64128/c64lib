@@ -17,6 +17,9 @@
 .const VIC_COLOR_BORDER = $d020
 .const VIC_COLOR_BACKGROUND = $d021
 
+.const VIC_SCREEN_WIDTH_PIXELS = 320
+.const VIC_SCREEN_HEIGHT_PIXELS = 200
+
 
 .macro vic_irq_raster_enable(i_line, isr) {
     // set raster line
