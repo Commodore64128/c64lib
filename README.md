@@ -8,7 +8,7 @@ I created this because most future-me has a much better chance of understanding
 
 ```
 lda #COLOR_GREEN
-sta #VIC_COLOR_BORDER
+sta VIC_COLOR_BORDER
 ```
 
 than
