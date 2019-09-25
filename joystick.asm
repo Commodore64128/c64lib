@@ -16,3 +16,4 @@
 .const JOYSTICK_LEFT = $04
 .const JOYSTICK_RIGHT = $08
 .const JOYSTICK_FIRE = $10
+.const JOYSTICK_MASK = $1f

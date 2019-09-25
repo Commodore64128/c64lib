@@ -25,8 +25,10 @@
 .const SPRITE_MASK_3 = $8
 
 .const SPRITE_SIZE_BYTES = 64
-.const SPRITE_HEIGHT_PIXELS = 21
-.const SPRITE_WIDTH_PIXELS = 24
+.const SPRITE_WIDTH = 24
+.const SPRITE_HEIGHT = 21
+.const SPRITE_CANVAS_WIDTH = 512
+.const SPRITE_CANVAS_HEIGHT = 256
 
 .macro sprite_enable(i) {
     lda #(1 << i)

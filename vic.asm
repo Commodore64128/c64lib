@@ -6,6 +6,7 @@
 .const VIC_SCREEN_CONTROL_1 = $d011
 .const VIC_RASTER_LINE = $d012
 .const VIC_SCREEN_CONTROL_2 = $d016
+.const VIC_MASK_MULTICOLOR_MODE = $10
 
 .const VIC_IRQ_STATUS = $d019
 .const VIC_IRQ_CONTROL = $d01a
@@ -16,10 +17,14 @@
 
 .const VIC_COLOR_BORDER = $d020
 .const VIC_COLOR_BACKGROUND = $d021
+.const VIC_COLOR_BACKGROUND_1 = $d022
+.const VIC_COLOR_BACKGROUND_2 = $d023
+.const VIC_COLOR_BACKGROUND_3 = $d024
 
-.const VIC_SCREEN_WIDTH_PIXELS = 320
-.const VIC_SCREEN_HEIGHT_PIXELS = 200
-
+.const VIC_VIEWPORT_WIDTH = 320
+.const VIC_VIEWPORT_HEIGHT = 200
+.const VIC_BORDER_WIDTH = 24
+.const VIC_BORDER_HEIGHT = 30
 
 .macro vic_irq_raster_enable(i_line, isr) {
     // set raster line
@@ -47,14 +52,8 @@
     sta VIC_COLOR_BACKGROUND
 }
 
-.macro vic_fillscreen(screen, char) {
-    lda #char
-    ldx #0
-loop:
-    sta screen, x
-    sta screen + $100, x
-    sta screen + $200, x
-    sta screen + $300, x
-    inx
-    bne loop
+.macro vic_enablemulticolor() {
+    lda VIC_SCREEN_CONTROL_2
+    ora VIC_MASK_MULTICOLOR_MODE
+    sta VIC_SCREEN_CONTROL_2
 }
