@@ -20,16 +20,14 @@
 .const VIC_COLOR_BACKGROUND_1 = $d022
 .const VIC_COLOR_BACKGROUND_2 = $d023
 .const VIC_COLOR_BACKGROUND_3 = $d024
+.const VIC_COLOR_SCREEN_BASE = $d800
 
 .const VIC_VIEWPORT_WIDTH = 320
 .const VIC_VIEWPORT_HEIGHT = 200
 .const VIC_BORDER_WIDTH = 24
 .const VIC_BORDER_HEIGHT = 30
 
-.macro vic_irq_raster_enable(i_line, isr) {
-    // set raster line
-    lda #$7f    // clear MSB
-    and VIC_SCREEN_CONTROL_1
+.macro vic_irq_raster_set(i_line, isr) {
     lda #i_line
     sta VIC_RASTER_LINE
     // set ISR address
@@ -37,6 +35,14 @@
     sta IRQ_ISR_LO
     lda #>isr
     sta IRQ_ISR_HI
+}
+
+.macro vic_irq_raster_enable(i_line, isr) {
+    // set raster line
+    lda #$7f    // clear MSB
+    and VIC_SCREEN_CONTROL_1
+    sta VIC_SCREEN_CONTROL_1
+    vic_irq_raster_set(i_line, isr)
     // enable raster interrupt
     lda #VIC_IRQ_MASK_RASTER
     sta VIC_IRQ_CONTROL

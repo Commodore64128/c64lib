@@ -66,10 +66,37 @@
     sta SPRITE_POINTER_BASE + i
 }
 
+.macro sprite_x_const(i, x) {
+    lda #<x
+    sta SPRITE_COORD_X_BASE + 2*i
+
+    lda SPRITE_COORD_X_BIT8
+    ora #(>x << i)
+    sta SPRITE_COORD_X_BIT8
+}
+
 .macro sprite_x(i, x) {
     lda x
     sta SPRITE_COORD_X_BASE + 2*i
-    // TODO: handle extra bit for x >= $100
+
+    lda x+1
+    beq msb_zero
+
+    lda #(1 << i)
+    ora SPRITE_COORD_X_BIT8
+    jmp return
+
+msb_zero:
+    lda #~(1 << i)
+    and SPRITE_COORD_X_BIT8
+    // fall-through
+return:
+    sta SPRITE_COORD_X_BIT8
+}
+
+.macro sprite_y_const(i, y) {
+    lda #y
+    sta SPRITE_COORD_Y_BASE + 2*i
 }
 
 .macro sprite_y(i, y) {

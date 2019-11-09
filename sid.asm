@@ -2,7 +2,8 @@
 
 // https://problemkaputt.de/pagezero.htm
 
-.const SID_V1_FREQ_LO = $d400
+.const SID_V1_BASE = $d400
+.const SID_V1_FREQ_LO = SID_V1_BASE
 .const SID_V1_FREQ_HI = $d401
 .const SID_V1_PULSE_DUTY_LO = $d402
 .const SID_V1_PULSE_DUTY_HI = $d403
@@ -10,7 +11,8 @@
 .const SID_V1_ENV_AD = $d405
 .const SID_V1_ENV_SR = $d406
 
-.const SID_V2_FREQ_LO = $d407
+.const SID_V2_BASE = $d407
+.const SID_V2_FREQ_LO = SID_V2_BASE
 .const SID_V2_FREQ_HI = $d408
 .const SID_V2_PULSE_DUTY_LO = $d409
 .const SID_V2_PULSE_DUTY_HI = $d40a
@@ -18,7 +20,8 @@
 .const SID_V2_ENV_AD = $d40c
 .const SID_V2_ENV_SR = $d40d
 
-.const SID_V3_FREQ_LO = $d40e
+.const SID_V3_BASE = $d40e
+.const SID_V3_FREQ_LO = SID_V3_BASE
 .const SID_V3_FREQ_HI = $d40f
 .const SID_V3_PULSE_DUTY_LO = $d410
 .const SID_V3_PULSE_DUTY_HI = $d411
@@ -26,7 +29,7 @@
 .const SID_V3_ENV_AD = $d413
 .const SID_V3_ENV_SR = $d414
 
-.const SID_CTRL_ENV_PHASE = $01
+.const SID_CTRL_TRIGGER = $01
 .const SID_CTRL_SYNC = $02
 .const SID_CTRL_RINGMOD = $04
 .const SID_CTRL_VOICE_DISABLE = $08
